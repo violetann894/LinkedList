@@ -1,3 +1,6 @@
+import timeit
+
+setUp = """
 class Node:
 
     def __init__(self, key):
@@ -43,7 +46,25 @@ class LinkedList:
         x = L.head
         while x is not None:
             print(x.key)
-            x = x.next
-
+            x = x.next"""
 
 if __name__ == "__main__":
+
+    testListSearch= """linkList = LinkedList(None)
+for i in range(0, 21):
+    linkList.listPrepend(i)
+linkList.listSearch(7)"""
+
+    testListPrepend= """linkList = LinkedList(None)
+for i in range(0, 21):
+    linkList.listPrepend(i)
+linkList.listInsert(Node(8), linkList.listSearch(14))"""
+
+    testListDelete= """linkList = LinkedList(None)
+for i in range(0, 21):
+    linkList.listPrepend(i)
+linkList.listDelete(linkList.listSearch(14))"""
+
+    print("Time for listSearch: ", timeit.timeit(setup = setUp, stmt = testListSearch, number=1000000))
+    print("Time for listPrepend: ", timeit.timeit(setup=setUp, stmt=testListPrepend, number=1000000))
+    print("Time for listDelete: ", timeit.timeit(setup=setUp, stmt=testListDelete, number=1000000))
