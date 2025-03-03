@@ -4,10 +4,12 @@ class Node:
         of the Node.
         key - The data that the Node needs to hold
         next - The pointer to the next object, starts as none because nothing is connected to a newly created Node
+        prev - The pointer to the previous object, starts as none because nothing is connected to a newly created node
         """
     def __init__(self, key):
         self.key = key
         self.next = None
+        self.prev = None
 
 
 class LinkedList:

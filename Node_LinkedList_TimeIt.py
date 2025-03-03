@@ -1,11 +1,13 @@
 import timeit
 
 setUp = """
+import random
 class Node:
 
     def __init__(self, key):
         self.key = key
         self.next = None
+        self.prev = None
 
 
 class LinkedList:
@@ -53,12 +55,12 @@ if __name__ == "__main__":
     testListSearch= """linkList = LinkedList(None)
 for i in range(0, 21):
     linkList.listPrepend(i)
-linkList.listSearch(7)"""
+linkList.listSearch(random.randint(0,20))"""
 
     testListInsert= """linkList = LinkedList(None)
 for i in range(0, 21):
     linkList.listPrepend(i)
-linkList.listInsert(Node(8), linkList.listSearch(14))"""
+linkList.listInsert(Node(8), linkList.listSearch(random.randint(0,20)))"""
 
     testListPrepend = """linkList = LinkedList(None)
 for i in range(0, 21):
@@ -66,11 +68,13 @@ for i in range(0, 21):
 linkList.listPrepend(100)"""
 
     testListDelete= """linkList = LinkedList(None)
-for i in range(0, 21):
+deleteNode = Node(0)
+linkList.listPrepend(deleteNode)    
+for i in range(1, 20):
     linkList.listPrepend(i)
-linkList.listDelete(linkList.listSearch(14))"""
+linkList.listDelete(deleteNode)"""
 
-    print("Time for listSearch: ", timeit.timeit(setup = setUp, stmt = testListSearch, number=100000))
-    print("Time for listInsert: ", timeit.timeit(setup=setUp, stmt=testListPrepend, number=100000))
-    print("Time for listPrepend: ", timeit.timeit(setup=setUp, stmt=testListPrepend, number=100000))
-    print("Time for listDelete: ", timeit.timeit(setup=setUp, stmt=testListDelete, number=100000))
+    print("Time for listSearch: ", timeit.timeit(setup = setUp, stmt = testListSearch, number=1000000))
+    print("Time for listInsert: ", timeit.timeit(setup=setUp, stmt=testListPrepend, number=1000000))
+    print("Time for listPrepend: ", timeit.timeit(setup=setUp, stmt=testListPrepend, number=1000000))
+    print("Time for listDelete: ", timeit.timeit(setup=setUp, stmt=testListDelete, number=1000000))
